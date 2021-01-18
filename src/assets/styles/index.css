@@ -1,12 +1,132 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.home_wrapper {
+  position: relative;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+.home_wrapper .home_image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.side_offset.home {
+  position: relative;
+  height: 100%;
+}
+
+.side_offset.home .home_logo, .side_offset.home .burger.home, .side_offset.home .home_weather, .side_offset.home .home_time, .side_offset.home .form.home {
+  position: absolute;
+}
+
+.side_offset.home .home_logo, .side_offset.home .burger.home {
+  top: 20px;
+}
+
+.side_offset.home .home_weather, .side_offset.home .home_time {
+  bottom: 20px;
+}
+
+.side_offset.home .home_logo, .side_offset.home .home_weather {
+  left: 20px;
+}
+
+.side_offset.home .burger.home, .side_offset.home .home_time {
+  right: 20px;
+}
+
+.side_offset.home .form.home {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.burger {
+  cursor: pointer;
+  position: relative;
+  height: 30px;
+  width: 30px;
+}
+
+.burger .burger_line {
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  -webkit-transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease, -webkit-transform 0.2s ease;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+}
+
+.burger .burger_line:after {
+  content: '';
+  -webkit-transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease, -webkit-transform 0.2s ease;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  top: 10px;
+}
+
+.burger .burger_line:before {
+  content: '';
+  -webkit-transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, -webkit-transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease;
+  transition: background-color 0.2s ease-in, transform 0.2s ease, -webkit-transform 0.2s ease;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  bottom: 10px;
+}
+
+.burger:hover .burger_line {
+  background-color: transparent;
+}
+
+.burger:hover .burger_line:after {
+  top: 0;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.burger:hover .burger_line:before {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: Roboto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: none;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/Roboto.ttf");
+}
+
+img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.app_wrapper {
+  height: 100vh;
 }
 
 .side_offset {
@@ -14,22 +134,10 @@ code {
   padding: 0 1rem;
 }
 
-@media (min-width: 768px) {
-  .side_offset {
-    width: 750px;
-    padding: 0;
-  }
-}
-
-@media (min-width: 1000px) {
-  .side_offset {
-    width: 970px;
-  }
-}
-
 @media (min-width: 1200px) {
   .side_offset {
-    width: 1170px;
+    max-width: 1200px;
+    width: 100%;
   }
 }
 /*# sourceMappingURL=index.css.map */

@@ -6,7 +6,11 @@ const Home = (props) => {
             <img src={background} alt="" className="home_image"/>
             <div className="side_offset home">
                 <h1 className="home_logo">My weather app</h1>
-                <div className="menu home"></div>
+                <div className="burger home">
+                    <div className="burger_line"></div>
+                    <div className="burger_line"></div>
+                    <div className="burger_line"></div>
+                </div>
                 <div className="home_weather">
                     <p className="home_temperature">5°C</p>
                     <p className="home_city">
@@ -17,7 +21,7 @@ const Home = (props) => {
                 <h1 className="home_time">20:13</h1>
 
                 {/*Form*/}
-                <form>
+                <form className="form home">
                     <input type="text" placeholder="Search for weather forecasts"/>
                     <input type="submit" value="Find"/>
                 </form>

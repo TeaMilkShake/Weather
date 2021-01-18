@@ -1,0 +1,35 @@
+.home_wrapper{
+    position: relative;
+    height: 100%;
+    .home_image{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+}
+.side_offset.home{
+    position: relative;
+    height: 100%;
+    .home_logo, .burger.home, .home_weather, .home_time, .form.home{
+        position: absolute;
+    }
+    .home_logo, .burger.home{
+        top: 20px;
+    }
+    .home_weather, .home_time{
+        bottom: 20px;
+    }
+    .home_logo, .home_weather{
+        left: 20px;
+    }
+    .burger.home, .home_time{
+        right: 20px;
+    }
+    .form.home{
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
