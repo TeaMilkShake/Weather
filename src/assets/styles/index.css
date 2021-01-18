@@ -8,4 +8,28 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.side_offset {
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .side_offset {
+    width: 750px;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .side_offset {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .side_offset {
+    width: 1170px;
+  }
+}
 /*# sourceMappingURL=index.css.map */
