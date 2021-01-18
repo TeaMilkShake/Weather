@@ -5,7 +5,7 @@ const Home = (props) => {
         <div className="home_wrapper">
             <img src={background} alt="" className="home_image"/>
             <div className="side_offset home">
-                <h1 className="home_logo">My weather app</h1>
+                <p className="home_logo">My weather app</p>
                 <div className="burger home">
                     <div className="burger_line"></div>
                     <div className="burger_line"></div>
@@ -18,7 +18,7 @@ const Home = (props) => {
                         <span className="home_weather_icon"></span>
                     </p>
                 </div>
-                <h1 className="home_time">20:13</h1>
+                <p className="home_time">20:13</p>
 
                 {/*Form*/}
                 <form className="form home">
