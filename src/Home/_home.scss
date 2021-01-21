@@ -36,49 +36,55 @@
         font-size: 2.6rem;
     }
 }
+
 .side_offset.home{
     position: relative;
-    height: 100%;
-    .home_logo, .burger.home, .home_weather, .home_time, .form.home{
-        position: absolute;
-        z-index: 3;
-        color: #fff;
+    height: 100%;  
+}
+.home_logo, .home_weather, .home_time, .form.home{
+    position: absolute;
+    z-index: 3;
+    color: #fff;
+}
+.burger.home{
+    position: absolute;
+    z-index: 4;
+    color: #fff;
+}
+.home_logo, .burger.home{
+    top: 20px;
+}
+.home_logo{
+    margin-top: -7px;
+}
+.home_weather, .home_time{
+    bottom: 20px;
+}
+.home_logo, .home_weather{
+    left: 20px;
+}
+.burger.home, .home_time{
+    right: 20px;
+}
+.home_time{
+    margin-bottom: -7px;
+}
+.form.home{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 0 20px;
+    input[type=text]{
+        max-width: 400px;
+        margin-left: auto;
+        font-size: 17px;
+        padding: 15px;
     }
-    .home_logo, .burger.home{
-        top: 20px;
-    }
-    .home_logo{
-        margin-top: -7px;
-    }
-    .home_weather, .home_time{
-        bottom: 20px;
-    }
-    .home_logo, .home_weather{
-        left: 20px;
-    }
-    .burger.home, .home_time{
-        right: 20px;
-    }
-    .home_time{
-        margin-bottom: -7px;
-    }
-    .form.home{
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        padding: 0 20px;
-        input[type=text]{
-            max-width: 400px;
-            margin-left: auto;
-            font-size: 17px;
-            padding: 15px;
-        }
-        input[type=submit]{
-            margin-right: auto;
-            font-size: 17px;
-            padding: 0 15px;
-        }
+    input[type=submit]{
+        margin-right: auto;
+        font-size: 17px;
+        padding: 0 15px;
     }
 }
 

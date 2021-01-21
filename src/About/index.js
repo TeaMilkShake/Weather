@@ -11,14 +11,24 @@ const About = () =>{
             <div className="about_info_block">
                 <div className="about_top_part">
                     <h1>About & Contacts</h1>
-                    <p><TiWeatherPartlySunny /> This application represents a weather search system.</p>
-                    <p><MdLocationCity /> Search for weather conditions in different cities.</p>
+                    <div className="about_item">
+                        <div className="about_item_icon">
+                            <TiWeatherPartlySunny />
+                        </div>
+                        <p>This application represents a weather search system.</p>
+                    </div>
+                    <div className="about_item">
+                        <div className="about_item_icon">
+                            <MdLocationCity />
+                        </div>
+                        <p>Search for weather conditions in different cities.</p>
+                    </div>
                 </div>
                 <div className="about_bottom_part">
-                    <p className="about_email">
+                    <div className="about_email">
                         <div></div>
-                        nik.yanovskyy@gmail.com
-                    </p>
+                        <p>nik.yanovskyy@gmail.com</p>
+                    </div>
                     <a href="#" target="_blank" className="about_link_btn">
                         <AiFillFacebook />
                     </a>
