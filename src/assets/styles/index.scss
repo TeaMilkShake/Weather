@@ -1,11 +1,21 @@
+$light: #4692BD;
+$lightHover: #3b7a9e;
+$dark: #01020B;
+$lightGray: #dddee2;
 @import '../../Home/home';
-@import './menuButton';
+@import '../../City/city';
+@import '../../About/about';
+
+@import '../../shared/Form/form';
+@import '../../shared/Navbar/navbar';
+@import '../../shared/Burger/burger';
 
 *{
   margin: 0;
   padding: 0;
   text-decoration: none;
   font-family: Roboto;
+  border: none;
   box-sizing: border-box;
   outline: none;
 }
@@ -30,7 +40,7 @@ img{
 //Media queries
 @media (min-width: 1200px) {
   .side_offset {
-    max-width: 1200px;
+    max-width: 1350px;
     width: 100%;
   }
 }
