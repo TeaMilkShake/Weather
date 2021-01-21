@@ -1,5 +1,7 @@
 import React from 'react'
 import Navbar from '../shared/Navbar'
+import About from '../About'
+
 import background from '../assets/images/clear.jpg'
 import {FiMapPin} from 'react-icons/fi'
 import {TiWeatherPartlySunny} from 'react-icons/ti'
@@ -12,6 +14,7 @@ const City = (props) =>{
     }
     return(
         <React.Fragment>
+            <About />
             <Navbar />
             <div className="photo_map_block">
                 <img src={background} alt=""/>

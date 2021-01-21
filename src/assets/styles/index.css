@@ -57,7 +57,6 @@
 
 .burger.home {
   position: absolute;
-  z-index: 4;
   color: #fff;
 }
 
@@ -463,21 +462,15 @@
 }
 
 .navbar_background {
+  position: relative;
   background-color: #01020B;
   padding: 10px 0;
 }
 
-.side_offset.navbar {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.burger.navbar {
+  position: absolute;
+  top: 30px;
+  right: 20px;
 }
 
 .side_offset.navbar .form.navbar input[type=text] {
@@ -501,35 +494,26 @@
 }
 
 @media screen and (max-width: 500px) {
-  .side_offset.navbar {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+  .side_offset.navbar .form.navbar {
+    margin-top: 40px;
   }
   .side_offset.navbar .form.navbar input[type=text] {
     width: 100%;
   }
   .search_block {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
     width: 100%;
   }
   .burger.navbar {
-    -webkit-box-ordinal-group: 2;
-        -ms-flex-order: 1;
-            order: 1;
-    margin-bottom: 15px;
+    top: 10px;
+    left: 20px;
+    right: 0;
   }
 }
 
 .burger {
   overflow: hidden;
   cursor: pointer;
+  z-index: 4;
   position: relative;
   height: 25px;
   width: 30px;

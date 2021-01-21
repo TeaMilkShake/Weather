@@ -13,8 +13,8 @@ const Navbar = (props) =>{
                         <div className="history_item"><p>Budapest</p></div>
                     </div>
                 </div>
-                <Burger locationClass="navbar"/>
             </div>
+            <Burger locationClass="navbar"/>
         </div>
         
     )
