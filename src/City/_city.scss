@@ -1,5 +1,7 @@
+$loaderTextHeight: 60px;
+
 .photo_map_block{
-    height: 200px;
+    height: 300px;
     position: relative;
     &:before{
         content: '';
@@ -19,10 +21,20 @@
         position: absolute;
         z-index: 2;
         bottom: 10px;
-        font-size: 1.8em;
+        font-size: 1.5em;
         right: 10px;
     }
 }
+
+//Photo-map loader
+.photo_map_block.loader{
+    background-color: $loaderLight;
+    position: relative;
+    &:before{
+        background-color: unset;
+    }
+}
+
 
 .city_main_info{
     display: flex;
@@ -56,7 +68,11 @@
         }
     }
 }
-
+.city_main_info.loader{
+    width: 400px;
+    height: $loaderTextHeight;
+    background-color: $loaderLight;
+}
 
 .city_additional_info{
     display: flex;
@@ -80,13 +96,20 @@
             font-weight: bold;
             margin-top: 5px;
         }
+        &:nth-of-type(2){
+            margin: 0 20px;
+        }
     }
 }
-
+.city_additional_info_item.loader{
+    width: 200px;
+    height: $loaderTextHeight;
+    background-color: $loaderLight;
+}
 
 @media screen and (max-width: 500px){
     .photo_map_block{
-        height: 150px;
+        height: 200px;
         .switcher{
             font-size: 1.4em;
         }
@@ -112,7 +135,9 @@
             }
         }
     }
-    
+    .city_main_info.loader{
+        width: 100%;
+    }
     .city_additional_info{
         flex-direction: column;
         .city_additional_info_item{
@@ -120,6 +145,14 @@
             h2{
                 font-size: 1.2em;
             }
+            &:nth-of-type(2){
+                margin: 15px 0 0 0;
+            }
         }
+
+    }
+    .city_additional_info_item.loader{
+        width: 100%;
+        height: 40px;
     }
 }
