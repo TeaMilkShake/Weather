@@ -2,8 +2,8 @@ import React from 'react';
 import Form from '../shared/Form'
 import Burger from '../shared/Burger'
 import About from '../About'
-import Time from './Time'
-import Weather from './Weather'
+//import Time from './Time'
+import WeatherContainer from './WeatherContainer'
 
 import background from '../assets/images/clear.jpg'
 const Home = () => {
@@ -21,8 +21,7 @@ const Home = () => {
                     <Burger locationClass="home"/>
                     <div className="side_offset home">
                         <p className="home_logo">My weather app</p>
-                        <Weather />
-                        <Time />
+                        <WeatherContainer />
                         <Form locationClass="home" />
                     </div>
             </div>
