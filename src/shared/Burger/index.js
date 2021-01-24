@@ -1,8 +1,18 @@
-import React from 'react'
-
+import React, {useContext, useRef, useEffect} from 'react'
+import {AppContext} from '../../AppContext'
 const Burger = (props) =>{
+    const context = useContext(AppContext)
+    useEffect(()=>{
+        const burgerClick = () =>{
+            context.toogleBurger()
+        }
+        context.burgerRef.current.addEventListener('click', burgerClick)
+        return ()=>{
+            context.burgerRef.current.removeEventListener('click', burgerClick)
+        }
+    }) 
     return(
-    <div className={"burger " + props.locationClass}>
+    <div ref={context.burgerRef} className={"burger " + props.locationClass}>
         <div className="burger_line"></div>
         <div className="burger_line"></div>
         <div className="burger_line"></div>

@@ -15,7 +15,6 @@ const Home = () => {
 
     return(
         <React.Fragment>
-            <About />
             <div className="home_wrapper">
                 <div style={styles} className="home_image"></div>
                     <Burger locationClass="home"/>

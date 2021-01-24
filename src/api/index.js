@@ -10,7 +10,6 @@ export const APIRequests = {
         return response.data
     },
     getCityWeather: async (city)=>{
-        alert(city)
         let response = await axios.get(`${config.openWeatherBaseUrl}q=${city}&units=metric&APPID=${config.key}`)
         return response.data
     },

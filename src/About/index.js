@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useRef, useEffect, useContext} from 'react'
 import aboutImg from "../assets/images/about.png";
 import {TiWeatherPartlySunny} from 'react-icons/ti'
 import {MdLocationCity} from 'react-icons/md'
 import {AiFillFacebook, AiFillGithub} from 'react-icons/ai'
+import {AppContext} from '../AppContext'
+const About = (props) =>{
+    const context = useContext(AppContext)
 
-const About = () =>{
     return(
-        <div className="about">
+        <div ref={context.aboutRef} className="about"> 
             <img src={aboutImg} alt=""/>
             <div className="about_info_block">
                 <div className="about_top_part">
