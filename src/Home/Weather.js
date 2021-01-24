@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {TiWeatherPartlySunny} from 'react-icons/ti';
 
 const Weather = () =>{
+    
     return(
         <div className="home_weather">
             <p className="home_temperature">5°C</p>

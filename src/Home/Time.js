@@ -1,14 +1,13 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 
 const Time = () =>{
     const [time, setTime] = useState(new Date().toLocaleTimeString())
-    let savedCount = useRef()
-    
-    useEffect(() => {
-        let id = setTimeout(() =>{
-            savedCount.current = new Date().toLocaleTimeString();
-            setTime(savedCount.current)
-        }, 1000);
+
+    const tick=()=>{
+        setTime(new Date().toLocaleTimeString())
+    }
+    useEffect(() => {  
+        let id = setTimeout(tick, 1000);
         return () => clearInterval(id);
     });
     return(
