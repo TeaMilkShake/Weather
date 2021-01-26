@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Weather from './Weather';
-import {APIRequests} from '../api/index'
+import {getCurrentLocation,getCityWeather} from '../api/index'
 const WeatherContainer = () =>{
     const [currentPlace , setCurrentPlace] = useState('')
     const [county , setCountry] = useState('')
@@ -9,12 +9,11 @@ const WeatherContainer = () =>{
         navigator.geolocation.getCurrentPosition( async (position) => {
             const lat = position.coords.latitude
             const long = position.coords.longitude
-
-            let locationResponse = await APIRequests.getCurrentLocation(lat,long)
+            let locationResponse = await getCurrentLocation(lat,long)
             locationResponse.city !== '' ? setCurrentPlace(locationResponse.city) : setCurrentPlace(locationResponse.locality)
             setCountry(locationResponse.countryName)
 
-            let WeatherResponse = await APIRequests.getCityWeather(locationResponse.city)
+            let WeatherResponse = await getCityWeather(locationResponse.city)
             setTemperature(Math.round(WeatherResponse.main.temp))
         })
     },[])

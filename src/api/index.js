@@ -1,16 +1,32 @@
 import axios from 'axios';
+
 const config = {
     bigDataCloudBaseUrl: `https://api.bigdatacloud.net/data/reverse-geocode-client?`,
     openWeatherBaseUrl: `https://api.openweathermap.org/data/2.5/weather?`,
-    key: `5f173b1653a520b1204c3d8cc7202fb6`
+    geoDBBaseUrl: `http://geodb-free-service.wirefreethought.com/v1/geo/cities?`,
 }
-export const APIRequests = {
-    getCurrentLocation: async (lat,long)=>{
+
+export const getCurrentLocation = async (lat,long)=>{
+    try{
         let response = await axios.get(`${config.bigDataCloudBaseUrl}latitude=${lat}&longitude=${long}&localityLanguage=en`)
         return response.data
-    },
-    getCityWeather: async (city)=>{
-        let response = await axios.get(`${config.openWeatherBaseUrl}q=${city}&units=metric&APPID=${config.key}`)
+    }catch(error){
+        console.log(`error`)
+    }   
+}
+export const  getCityWeather = async (city)=>{
+    try{
+        let response = await axios.get(`${config.openWeatherBaseUrl}q=${city}&units=metric&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
         return response.data
-    },
-} 
+    }catch(error){
+        console.log(`error`)
+    } 
+}
+export const getCitySuggestions = async (city)=>{
+    try{
+        let response = await axios.get(`${config.geoDBBaseUrl}limit=5&offset=0&namePrefix=${city}&minPopulation=40000`)
+        return response.data
+    }catch(error){
+        console.log(`error`)
+    }  
+}

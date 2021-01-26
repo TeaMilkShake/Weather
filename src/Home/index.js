@@ -1,7 +1,6 @@
 import React from 'react';
 import Form from '../shared/Form'
 import Burger from '../shared/Burger'
-import About from '../About'
 //import Time from './Time'
 import WeatherContainer from './WeatherContainer'
 

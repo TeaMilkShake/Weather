@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useContext} from 'react'
+import React, {useContext} from 'react'
 import aboutImg from "../assets/images/about.png";
 import {TiWeatherPartlySunny} from 'react-icons/ti'
 import {MdLocationCity} from 'react-icons/md'

@@ -1,4 +1,4 @@
-import React, {useContext, useRef, useEffect} from 'react'
+import React, {useContext, useEffect} from 'react'
 import {AppContext} from '../../AppContext'
 const Burger = (props) =>{
     const context = useContext(AppContext)
