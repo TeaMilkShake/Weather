@@ -74,11 +74,13 @@
     transform: translate(-50%, -50%);
     width: 100%;
     padding: 0 20px;
-    input[type=text]{
+    .text_input_block{
         max-width: 400px;
         margin-left: auto;
-        font-size: 17px;
-        padding: 15px;
+        input[type=text]{
+            font-size: 17px;
+            padding: 15px;
+        }
     }
     input[type=submit]{
         margin-right: auto;

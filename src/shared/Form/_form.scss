@@ -1,6 +1,39 @@
 .form{
     display: flex;
+    .text_input_block{
+        position: relative;
+        width: 100%;
+        .suggestions{
+            position: absolute;
+            top: calc(100% + 5px);
+            width: 100%;
+            color: #000;
+            .suggestion{
+                cursor: pointer;
+                position: relative;
+                background-color: #fff;
+                padding: 15px 10px 15px 30px;
+                border-bottom: 1px solid $lightGray;
+                &:before{
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    bottom: -1px;
+                    width: 10px;
+                    left: 0;
+                    background-color: unset;
+                }
+                &:hover{
+                    &:before{
+                        background-color: $light;
+                    }
+                    background-color: $lightHover;
+                }
+            }
+        }
+    }
     input[type=text]{
+        position: relative;
         width: 100%;
     }
     input[type=submit]{
@@ -9,7 +42,7 @@
         background-color: $light;
         color: #fff;
         &:hover{
-            background-color: $lightHover;
+            background-color: $darkHover;
         }
     }
 }

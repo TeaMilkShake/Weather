@@ -93,9 +93,12 @@
   padding: 0 20px;
 }
 
-.form.home input[type=text] {
+.form.home .text_input_block {
   max-width: 400px;
   margin-left: auto;
+}
+
+.form.home .text_input_block input[type=text] {
   font-size: 17px;
   padding: 15px;
 }
@@ -500,7 +503,7 @@
 }
 
 .about .about_info_block .about_bottom_part .about_link_btn:hover {
-  background-color: #3b7a9e;
+  background-color: #E5F1FC;
 }
 
 @media screen and (max-width: 700px) {
@@ -526,7 +529,46 @@
   display: flex;
 }
 
+.form .text_input_block {
+  position: relative;
+  width: 100%;
+}
+
+.form .text_input_block .suggestions {
+  position: absolute;
+  top: calc(100% + 5px);
+  width: 100%;
+  color: #000;
+}
+
+.form .text_input_block .suggestions .suggestion {
+  cursor: pointer;
+  position: relative;
+  background-color: #fff;
+  padding: 15px 10px 15px 30px;
+  border-bottom: 1px solid #dddee2;
+}
+
+.form .text_input_block .suggestions .suggestion:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  width: 10px;
+  left: 0;
+  background-color: unset;
+}
+
+.form .text_input_block .suggestions .suggestion:hover {
+  background-color: #E5F1FC;
+}
+
+.form .text_input_block .suggestions .suggestion:hover:before {
+  background-color: #4692BD;
+}
+
 .form input[type=text] {
+  position: relative;
   width: 100%;
 }
 
