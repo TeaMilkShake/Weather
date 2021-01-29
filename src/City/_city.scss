@@ -3,6 +3,7 @@ $loaderTextHeight: 60px;
 .photo_map_block{
     height: 300px;
     position: relative;
+    z-index: 1;
     &:before{
         content: '';
         position: absolute;
@@ -44,6 +45,7 @@ $loaderTextHeight: 60px;
     .weather_mini_card{ 
         padding: 10px 20px;
         display: flex;
+        margin-right: 15px;
         align-items: center;
         justify-content: center;
         background-color: $dark;

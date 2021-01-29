@@ -1,33 +1,40 @@
 import React, {useState, useRef} from 'react'
 import {getCitySuggestions} from '../../api/index'
 import Suggestions from './Suggestions'
-
+import {useHistory} from 'react-router-dom'
 const Form = (props) => {
-    const inputRef = useRef() 
     const [cities, setCities] = useState([])
     const [inputValue, setInputValue] = useState("")
     const id = useRef()
+    const history = useHistory()
 
-    const onChange = (e) =>{
+    const handleChange = (e) =>{
         setInputValue(e.target.value)
     }
-    const onKeyDown = () =>{
+    const handleKeyDown = () =>{
         clearTimeout(id.current)
     }
-    const onKeyUp = () =>{
+    const handleKeyUp = () =>{
         id.current = setTimeout(async()=>{
             let response = await getCitySuggestions(inputValue)
             setCities(response.data)
-        },500)
+        },1000)
+    }
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        inputValue.length > 0 && history.push(`/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
+    }
+    const handleSelect = (city, country) =>{
+        inputValue.length > 0 && history.push(`/city?q=${city}&country=${country}`)
     }
 
     return(
         <form className={"form "+props.locationClass}>
             <div className="text_input_block">
-                <input ref={inputRef} type="text" placeholder="City name" onKeyUp={onKeyUp} onKeyDown={onKeyDown} onChange={onChange} value={inputValue && inputValue}/> 
-                {inputValue.length !== 0 && <Suggestions suggestions={cities}/>}
+                <input type="text" placeholder="City name" onKeyUp={handleKeyUp} onKeyDown={handleKeyDown} onChange={handleChange} value={inputValue}/> 
+                {inputValue.length !== 0 && <Suggestions handleSelect={handleSelect} suggestions={cities}/>}
             </div>
-            <input type="submit" value="Find"/>
+            <input type="submit" value="Find" onClick={(e) => {handleSubmit(e)}}/>
         </form>
     )
 }

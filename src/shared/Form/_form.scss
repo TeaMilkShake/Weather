@@ -2,9 +2,9 @@
     display: flex;
     .text_input_block{
         position: relative;
-        width: 100%;
         .suggestions{
             position: absolute;
+            z-index: 2;
             top: calc(100% + 5px);
             width: 100%;
             color: #000;

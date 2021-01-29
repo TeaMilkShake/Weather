@@ -14,9 +14,9 @@ export const getCurrentLocation = async (lat,long)=>{
         console.log(`error`)
     }   
 }
-export const  getCityWeather = async (city)=>{
+export const  getCityWeather = async (id)=>{
     try{
-        let response = await axios.get(`${config.openWeatherBaseUrl}q=${city}&units=metric&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
+        let response = await axios.get(`${config.openWeatherBaseUrl}id=${id}&units=metric&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
         return response.data
     }catch(error){
         console.log(`error`)
