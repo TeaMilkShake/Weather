@@ -1,14 +1,10 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
 const Suggestions = (props) =>{
-    const handleSelect = (city,country) =>{
-        props.handleSelect(city,country)
-    }
-    
     return(
-        <div className="suggestions">
+        <div className="suggestions" style={{visibility: props.isSuggestionsVisible ? `visible` : `hidden`}}>
            {props.suggestions.map((suggestion, index)=>{
-               return <p className="suggestion" onClick={()=> handleSelect(suggestion.city, suggestion.country)} key={index}>{`${suggestion.city}, ${suggestion.country}`}</p>
+               return <p className="suggestion" onClick={()=> props.handleSelect(suggestion.city, suggestion.country)} key={index}>{`${suggestion.city}, ${suggestion.country}`}</p>
             })
             }
         </div>

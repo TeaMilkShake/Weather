@@ -24,19 +24,20 @@ const WeatherProps = () =>{
             //I can't get cities id from this response,
             // that's so i make another api call, using
             // lat and long which a got from 'city response'
-                if(cityResponse.data[0].name.toLowerCase() === cityQuery && cityResponse.data[0].country.toLowerCase() === countryQuery){
+            cityResponse.data.map(async(city)=>{
+                if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
                     
                     //Get list of cities, which are in the given lat and long area.
-                    let locationResponse =  await getCurrentLocation(cityResponse.data[0].latitude, cityResponse.data[0].longitude)
+                    let locationResponse =  await getCurrentLocation(city.latitude, city.longitude)
                     
                     // Need to store cities name and it's country in ref to display in DOM
-                    placeName.current = {city: cityResponse.data[0].name, country: cityResponse.data[0].country}
+                    placeName.current = {city: city.name, country: city.country}
 
                     // Variable for getting current city id
                     let cityId;
 
                     // Map through cities to get the one, which name and country fully 
-                    // correspond to given queries, and setting the id 
+                    // correspond to given queries 
                     locationResponse.localityInfo.administrative.map((elem) =>{
                         if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
                             cityId = elem.geonameId
@@ -46,7 +47,8 @@ const WeatherProps = () =>{
                     //Get city weather
                     let data = await getCityWeather(cityId)
                     setData({isLoading: false, data: data})
-                }      
+                } 
+            })              
         }
         fetchData()
     },[cityQuery, countryQuery])     

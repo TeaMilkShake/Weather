@@ -6,6 +6,8 @@ const config = {
     geoDBBaseUrl: `http://geodb-free-service.wirefreethought.com/v1/geo/cities?`,
 }
 
+export const CitySuggestions = axios.create()
+
 export const getCurrentLocation = async (lat,long)=>{
     try{
         let response = await axios.get(`${config.bigDataCloudBaseUrl}latitude=${lat}&longitude=${long}&localityLanguage=en`)
@@ -22,11 +24,11 @@ export const  getCityWeather = async (id)=>{
         console.log(`error`)
     } 
 }
-export const getCitySuggestions = async (city)=>{
+export const getCitySuggestions = async (city, cancelToken)=>{
     try{
-        let response = await axios.get(`${config.geoDBBaseUrl}limit=5&offset=0&namePrefix=${city}&minPopulation=40000`)
+        let response = await CitySuggestions.get(`${config.geoDBBaseUrl}limit=5&offset=0&namePrefix=${city}&minPopulation=40000`, {cancelToken})
         return response.data
     }catch(error){
-        console.log(`error`)
+        
     }  
 }
