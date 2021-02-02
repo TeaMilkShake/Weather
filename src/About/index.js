@@ -31,10 +31,10 @@ const About = (props) =>{
                         <div></div>
                         <p>nik.yanovskyy@gmail.com</p>
                     </div>
-                    <a href="#" target="_blank" className="about_link_btn">
+                    <a href="https://habr.com/ru/company/ruvds/blog/445276/" rel="noreferrer" target="_blank" className="about_link_btn">
                         <AiFillFacebook />
                     </a>
-                    <a href="#" target="_blank" className="about_link_btn">
+                    <a href="https://habr.com/ru/company/ruvds/blog/445276/" rel="noreferrer" target="_blank" className="about_link_btn">
                         <AiFillGithub />
                     </a>
                 </div>

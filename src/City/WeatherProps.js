@@ -6,7 +6,7 @@ import {IoIosSpeedometer} from 'react-icons/io'
 import WeatherPropsLoader from './WeatherPropsLoader'
 import {useQuery} from '../hooks'
 import {getCityWeather, getCitySuggestions, getCurrentLocation} from '../api'
-import NoResults from './NoResults'
+//import NoResults from './NoResults'
 
 const WeatherProps = () =>{
     const [isLoading, setIsLoading] = useState(true)
@@ -16,29 +16,29 @@ const WeatherProps = () =>{
     const placeName = useRef({city: '', country: ''})
     useEffect(()=>{
         const fetchData = async() =>{
-                let cityResponse = await getCitySuggestions(cityQuery)
-                cityResponse.data.map( async(city)=>{
-                    if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
-                        let locationResponse =  await getCurrentLocation(city.latitude, city.longitude)
-                        placeName.current = {city: city.name, country: city.country}
+            setIsLoading(true)
+            let cityResponse = await getCitySuggestions(cityQuery)
+            cityResponse.data.map( async(city)=>{
+                if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
+                    let locationResponse =  await getCurrentLocation(city.latitude, city.longitude)
+                    placeName.current = {city: city.name, country: city.country}
 
-                        // Get current city id
-                        let cityId;
-                        locationResponse.localityInfo.administrative.map((elem) =>{
-                            if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
-                                cityId = elem.geonameId
-                            }
-                        })
-                        let data = await getCityWeather(cityId)
-                        setData(data)
-                    }
-                })
+                    // Get current city id
+                    let cityId;
+                    locationResponse.localityInfo.administrative.map((elem) =>{
+                        if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
+                            cityId = elem.geonameId
+                        }
+                    })
+                    setData(null)
+                    let data = await getCityWeather(cityId)
+                    setData(data)
+                }
+            })            
+            setIsLoading(false)
         }
-        setIsLoading(true)
-        setData(null)
         fetchData()
-        setIsLoading(false)
-    },[isLoading, cityQuery, countryQuery])     
+    },[cityQuery, countryQuery])     
     
     if(data){
         return <div className="city_text">
