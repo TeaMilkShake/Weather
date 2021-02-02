@@ -6,7 +6,7 @@ import {IoIosSpeedometer} from 'react-icons/io'
 import WeatherPropsLoader from './WeatherPropsLoader'
 import {useQuery} from '../hooks'
 import {getCityWeather, getCitySuggestions, getCurrentLocation} from '../api'
-//import NoResults from './NoResults'
+import NoResults from './NoResults'
 
 const WeatherProps = () =>{
     const [data, setData] = useState({isLoading: true , data: null})
@@ -14,7 +14,6 @@ const WeatherProps = () =>{
     const countryQuery = useQuery('country')
     const placeName = useRef({city: '', country: ''})
     useEffect(()=>{
-
         // Getting city weather by ID !!!
         const fetchData = async() =>{
             setData({isLoading: true, data: null})
@@ -24,7 +23,7 @@ const WeatherProps = () =>{
             //I can't get cities id from this response,
             // that's so i make another api call, using
             // lat and long which a got from 'city response'
-            cityResponse.data.map(async(city)=>{
+            let filteredCities = cityResponse.data.map(async(city)=>{
                 if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
                     
                     //Get list of cities, which are in the given lat and long area.
@@ -48,7 +47,10 @@ const WeatherProps = () =>{
                     let data = await getCityWeather(cityId)
                     setData({isLoading: false, data: data})
                 } 
-            })              
+            })      
+            if(filteredCities.length === 0){
+                setData({isLoading: false, data: null})
+            }        
         }
         fetchData()
     },[cityQuery, countryQuery])     
@@ -56,34 +58,35 @@ const WeatherProps = () =>{
     if(data.isLoading){
         return <WeatherPropsLoader />
     }else{  
-        return <div className="city_text">
-                    <div className="city_main_info">
-                        <h1>{placeName.current.city}, {placeName.current.country}</h1>
-                        <div className="weather_mini_card">
-                            <p className="city_temperature">{Math.round(data.data.main.temp)}°C</p>
-                            <div className="mini_card_line"></div>
-                            <div className="city_weather_icon"><TiWeatherPartlySunny /></div>
+        if(data.data === null){
+            return <NoResults />
+        }else{
+            return <div className="city_text">
+                        <div className="city_main_info">
+                            <h1>{placeName.current.city}, {placeName.current.country}</h1>
+                            <div className="weather_mini_card">
+                                <p className="city_temperature">{Math.round(data.data.main.temp)}°C</p>
+                                <div className="mini_card_line"></div>
+                                <div className="city_weather_icon"><TiWeatherPartlySunny /></div>
+                            </div>
+                        </div>
+                        <div className="city_additional_info">
+                            <div className="city_additional_info_item">
+                                <h2>Wind speed <FaWind /></h2>
+                                <p>{data.data.wind.speed} m/s</p>
+                            </div>
+                            <div className="city_additional_info_item">
+                                <h2>Humidity <BsDropletHalf /></h2>
+                                <p>{data.data.main.humidity}%</p>
+                            </div>
+                            <div className="city_additional_info_item">
+                                <h2>Pressure <IoIosSpeedometer /></h2>
+                                <p>{data.data.main.pressure} psf</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="city_additional_info">
-                        <div className="city_additional_info_item">
-                            <h2>Wind speed <FaWind /></h2>
-                            <p>{data.data.wind.speed} m/s</p>
-                        </div>
-                        <div className="city_additional_info_item">
-                            <h2>Humidity <BsDropletHalf /></h2>
-                            <p>{data.data.main.humidity}%</p>
-                        </div>
-                        <div className="city_additional_info_item">
-                            <h2>Pressure <IoIosSpeedometer /></h2>
-                            <p>{data.data.main.pressure} psf</p>
-                        </div>
-                    </div>
-                </div>
+        }  
     }
-            
-
-   
 }
 
 export default WeatherProps

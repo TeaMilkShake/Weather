@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState} from 'react'
 import {getCitySuggestions} from '../../api/index'
 import Suggestions from './Suggestions'
 import {useHistory} from 'react-router-dom'
@@ -42,7 +42,7 @@ const Form = (props) => {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        inputValue.length > 0 && history.push(`/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
+        history.push(`/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
     }
 
     return(
