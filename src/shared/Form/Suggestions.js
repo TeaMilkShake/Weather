@@ -4,10 +4,7 @@ const Suggestions = (props) =>{
     const handleSelect = (city,country) =>{
         props.handleSelect(city,country)
     }
-    useEffect(() => {
-        console.log(props.suggestions)
-        
-    })
+    
     return(
         <div className="suggestions">
            {props.suggestions.map((suggestion, index)=>{

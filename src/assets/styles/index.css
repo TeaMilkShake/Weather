@@ -195,7 +195,6 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-right: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -319,7 +318,7 @@
     font-size: 1.4em;
   }
   .city_main_info {
-    margin: 0;
+    margin: 0 20px;
     padding: 15px 0 15px 15px;
     background-color: #dddee2;
     width: 100%;

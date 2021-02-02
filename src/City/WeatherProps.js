@@ -10,56 +10,42 @@ import NoResults from './NoResults'
 
 const WeatherProps = () =>{
     const [isLoading, setIsLoading] = useState(true)
-    const [responseState, setResponseState] = useState('pending')
-    const queryParams = useQuery()
-    const weatherResponseRef = useRef()
-    const locationResponseRef = useRef()
-
+    const [data, setData] = useState(null)
+    const cityQuery = useQuery('q')
+    const countryQuery = useQuery('country')
+    const placeName = useRef({city: '', country: ''})
     useEffect(()=>{
         const fetchData = async() =>{
-            if(isLoading){
-                    if(responseState !== `rejected`){
-                        let cityResponse = await getCitySuggestions(queryParams.get(`q`).toLowerCase())
-                        console.log(cityResponse)
-                        cityResponse.data.map( async(city)=>{
-                            if(city.name.toLowerCase() === queryParams.get(`q`).toLowerCase() && city.country === queryParams.get('country')){
-                                locationResponseRef.current = await getCurrentLocation(city.latitude, city.longitude)
-                                console.log(locationResponseRef.current)
+                let cityResponse = await getCitySuggestions(cityQuery)
+                cityResponse.data.map( async(city)=>{
+                    if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
+                        let locationResponse =  await getCurrentLocation(city.latitude, city.longitude)
+                        placeName.current = {city: city.name, country: city.country}
 
-                                // Get current city id
-                                let cityId;
-                                locationResponseRef.current.localityInfo.administrative.map((elem) =>{
-                                    if(elem.name === queryParams.get('country') && elem.hasOwnProperty('geonameId')){
-                                        cityId = elem.geonameId
-                                    }
-                                })
-                                weatherResponseRef.current = await getCityWeather(cityId)
-                                console.log(weatherResponseRef.current)
-                                setResponseState('fulfilled')
+                        // Get current city id
+                        let cityId;
+                        locationResponse.localityInfo.administrative.map((elem) =>{
+                            if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
+                                cityId = elem.geonameId
                             }
                         })
-                        if(cityResponse.data.length === 0){
-                            setResponseState('rejected')
-                        }
-                    }      
-            }
-            setIsLoading(false)
+                        let data = await getCityWeather(cityId)
+                        setData(data)
+                    }
+                })
         }
+        setIsLoading(true)
+        setData(null)
         fetchData()
-    },[queryParams, isLoading, responseState])
-
-    if(responseState === 'pending'){
-        return <WeatherPropsLoader />
-    }
-    if(responseState === 'rejected'){
-        return <NoResults />
-    }
-    if (responseState === 'fulfilled'){
+        setIsLoading(false)
+    },[isLoading, cityQuery, countryQuery])     
+    
+    if(data){
         return <div className="city_text">
                     <div className="city_main_info">
-                        <h1>{queryParams.get('q')}, {weatherResponseRef.current.sys.country /*locationResponseRef.current.countryName*/}</h1>
+                        <h1>{placeName.current.city}, {placeName.current.country}</h1>
                         <div className="weather_mini_card">
-                            <p className="city_temperature">{Math.round(weatherResponseRef.current.main.temp)}°C</p>
+                            <p className="city_temperature">{Math.round(data.main.temp)}°C</p>
                             <div className="mini_card_line"></div>
                             <div className="city_weather_icon"><TiWeatherPartlySunny /></div>
                         </div>
@@ -67,19 +53,25 @@ const WeatherProps = () =>{
                     <div className="city_additional_info">
                         <div className="city_additional_info_item">
                             <h2>Wind speed <FaWind /></h2>
-                            <p>{weatherResponseRef.current.wind.speed} m/s</p>
+                            <p>{data.wind.speed} m/s</p>
                         </div>
                         <div className="city_additional_info_item">
                             <h2>Humidity <BsDropletHalf /></h2>
-                            <p>{weatherResponseRef.current.main.humidity}%</p>
+                            <p>{data.main.humidity}%</p>
                         </div>
                         <div className="city_additional_info_item">
                             <h2>Pressure <IoIosSpeedometer /></h2>
-                            <p>{weatherResponseRef.current.main.pressure} psf</p>
+                            <p>{data.main.pressure} psf</p>
                         </div>
                     </div>
                 </div>
+    }else{
+        return <WeatherPropsLoader />
+        
     }
+            
+
+   
 }
 
 export default WeatherProps

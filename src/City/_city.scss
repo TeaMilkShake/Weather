@@ -45,7 +45,6 @@ $loaderTextHeight: 60px;
     .weather_mini_card{ 
         padding: 10px 20px;
         display: flex;
-        margin-right: 15px;
         align-items: center;
         justify-content: center;
         background-color: $dark;
@@ -138,7 +137,7 @@ $loaderTextHeight: 60px;
     }
 
     .city_main_info{
-        margin: 0;
+        margin: 0 20px;
         padding: 15px 0 15px 15px;
         background-color: $lightGray;
         width: 100%;
