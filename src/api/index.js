@@ -3,7 +3,7 @@ import axios from 'axios';
 const config = {
     bigDataCloudBaseUrl: `https://api.bigdatacloud.net/data/reverse-geocode-client?`,
     openWeatherBaseUrl: `https://api.openweathermap.org/data/2.5/weather?`,
-    geoDBBaseUrl: `http://geodb-free-service.wirefreethought.com/v1/geo/cities?`,
+    geoDBBaseUrl: `https://geodb-free-service.wirefreethought.com/v1/geo/cities?`,
 }
 
 export const CitySuggestions = axios.create()
