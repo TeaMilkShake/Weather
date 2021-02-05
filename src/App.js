@@ -10,8 +10,8 @@ function App() {
       <div className="app_wrapper">
         <About/>
         <BrowserRouter>
-          <Route exact path="/" render={() => <Home />}/>
-          <Route exact path="/city" render={() => <City />}/>
+          <Route exact path="/Weather" render={() => <Home />}/>
+          <Route exact path="/Weather/city" render={() => <City />}/>
         </BrowserRouter>
       </div>
     </AppProvider>
