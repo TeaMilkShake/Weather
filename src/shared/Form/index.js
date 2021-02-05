@@ -15,7 +15,7 @@ const Form = (props) => {
     const source = axios.CancelToken.source();
 
     const handleSelect = (city, country) =>{
-        history.push(`/city?q=${city}&country=${country}`)
+        history.push(`Weather/city?q=${city}&country=${country}`)
     }
     const handleChange = (e) =>{
         setInputValue(e.target.value)
@@ -49,7 +49,7 @@ const Form = (props) => {
     }
     const handleSubmit = (e) =>{
         e.preventDefault()
-        history.push(`/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
+        history.push(`Weather/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
     }
 
     return(
