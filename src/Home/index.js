@@ -16,12 +16,12 @@ const Home = () => {
         <React.Fragment>
             <div className="home_wrapper">
                 <div style={styles} className="home_image"></div>
-                    <Burger locationClass="home"/>
-                    <div className="side_offset home">
-                        <p className="home_logo">My weather app</p>
-                        <WeatherContainer />
-                        <Form locationClass="home" />
-                    </div>
+                <Burger locationClass="home"/>
+                <div className="side_offset home">
+                    <p className="home_logo">My weather app</p>
+                    <WeatherContainer />
+                    <Form locationClass="home" />
+                </div>
             </div>
         </React.Fragment>
     )

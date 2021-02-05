@@ -8,10 +8,6 @@ const Navbar = (props) =>{
             <div className="side_offset navbar">
                 <div className="search_block">
                     <Form locationClass="navbar"/>
-                    <div className="history">
-                        <div className="history_item"><p>Tokyo</p></div>
-                        <div className="history_item"><p>Budapest</p></div>
-                    </div>
                 </div>
             </div>
             <Burger locationClass="navbar"/>

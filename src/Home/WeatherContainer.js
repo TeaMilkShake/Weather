@@ -4,7 +4,7 @@ import {getCurrentLocation,getCityWeather} from '../api/index'
 const WeatherContainer = () =>{
     const [currentPlace , setCurrentPlace] = useState('')
     const [county , setCountry] = useState('')
-    const [temperature, setTemperature] = useState('')
+    const [weatherData, setWeatherData] = useState({temperature: '', weather: '', description: ''})
     useEffect(() => {
         navigator.geolocation.getCurrentPosition( async (position) => {
 
@@ -25,14 +25,18 @@ const WeatherContainer = () =>{
             })
 
             let WeatherResponse = await getCityWeather(cityId)
-            setTemperature(Math.round(WeatherResponse.main.temp))
+            setWeatherData({
+                temperature: Math.round(WeatherResponse.main.temp),
+                weather: WeatherResponse.weather[0].main,
+                description: WeatherResponse.weather[0].description
+            })
         })
     },[])
     return(
         <Weather 
             currentPlace={currentPlace} 
             county={county}
-            temperature={temperature} 
+            weatherData={weatherData} 
         />
     )
 }

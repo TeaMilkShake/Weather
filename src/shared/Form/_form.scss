@@ -1,3 +1,10 @@
+@mixin suggestion(){
+    position: relative;
+    background-color: #fff;
+    padding: 15px 10px 15px 30px;
+    border-bottom: 1px solid $lightGray;
+}
+
 .form{
     display: flex;
     .text_input_block{
@@ -9,11 +16,9 @@
             width: 100%;
             color: #000;
             .suggestion{
-                cursor: pointer;
-                position: relative;
-                background-color: #fff;
-                padding: 15px 10px 15px 30px;
+                @include suggestion;
                 border-bottom: 1px solid $lightGray;
+                cursor: pointer;
                 &:before{
                     content: '';
                     position: absolute;
@@ -30,28 +35,84 @@
                     background-color: $lightHover;
                 }
             }
+            .suggestion_no_results{
+                @include suggestion;
+            }
         }
     }
     input[type=text]{
         position: relative;
         width: 100%;
     }
-    input[type=submit]{
-        transition: background-color 0.1s ease-in;
-        cursor: pointer;
-        background-color: $light;
-        color: #fff;
-        &:hover{
-            background-color: $darkHover;
+}
+.small_loader_wrapper{
+    position: absolute;
+    z-index: 2;
+    height: fit-content;
+    width: fit-content;
+    top: 50%;
+    right: 20px;
+    transform: translate(0,-50%);
+    font-size: 1.7em;
+    .small_loader{
+        position: relative;
+        .loader_icon_dark, .loader_icon_light{
+            top: -14px;
+            left: -14px;
+            position: absolute;
+        }
+        .loader_icon_dark{
+            transition: clip-path ease-in-out;
+            color: $dark;
+            &:nth-of-type(1){
+                z-index: 1;
+                animation: 1.2s loader_icon_dark_1 ease-in-out infinite;
+            }
+            &:nth-of-type(2){
+                z-index: 1;
+                animation: 1.2s loader_icon_dark_2 ease-in-out infinite;
+            }
+        }
+        .loader_icon_light{
+            color: $light;
         }
     }
+    @keyframes loader_icon_dark_1 {
+        0%{
+            clip-path: inset(0 0 0 0);
+        }
+        25%{
+            clip-path: inset(0 0 0 100%);
+        }
+        50%{
+            clip-path: inset(0 0 0 100%);
+        }
+        100%{
+            clip-path: inset(0 0 0 100%);
+        }
+    }
+    @keyframes loader_icon_dark_2 {
+        0%{
+            clip-path: inset(0 100% 0 0);
+        }
+        25%{
+            clip-path: inset(0 100% 0 0);
+        }
+        50%{
+            clip-path: inset(0 100% 0 0);
+        }
+        75%{
+            clip-path: inset(0 0 0 0);
+        }
+        100%{
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
 }
 
 @media screen and (max-width: 425px){
     .form{
-        input[type=submit]{
-            font-size: 14px;
-        }
         input[type=text]{
             font-size: 14px;
         }

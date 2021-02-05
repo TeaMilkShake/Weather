@@ -3,13 +3,17 @@ import {getCitySuggestions} from '../../api/index'
 import Suggestions from './Suggestions'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import SmallLoader from './SmallLoader'
 
 const Form = (props) => {
-    const [cities, setCities] = useState([])
+    const [cities, setCities] = useState()
     const [inputValue, setInputValue] = useState("")
+    const [areSuggestionsVisible, setIsSuggestionsVisivle] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
     const history = useHistory()
-    const [isSuggestionsVisible, setIsSuggestionsVisivle] = useState(false)
     const source = axios.CancelToken.source();
+
     const handleSelect = (city, country) =>{
         history.push(`/city?q=${city}&country=${country}`)
     }
@@ -24,9 +28,12 @@ const Form = (props) => {
     const handleKeyUp = () =>{
         let fetchData = async() =>{
             if(inputValue.length > 3){
+                setIsLoading(true)
                 let response = await getCitySuggestions(inputValue, source.token)
                 if(response){
+                    console.log(response.data)
                     setCities(response.data)
+                    setIsLoading(false)
                 }
             }
         }
@@ -48,10 +55,10 @@ const Form = (props) => {
     return(
         <form onSubmit={(e) => handleSubmit(e)} className={"form "+props.locationClass}>
             <div className="text_input_block">
-                <input type="text" placeholder="City name" onFocus={handleFocus} onBlur={handleBlur} onKeyUp={handleKeyUp} onKeyDown={handleKeyDown} onChange={handleChange} value={inputValue}/> 
-                {<Suggestions isSuggestionsVisible={isSuggestionsVisible} handleSelect={handleSelect} suggestions={cities}/>}
+                <SmallLoader isLoading={isLoading}/>
+                <input type="text" placeholder="Type and select city from list" onFocus={handleFocus} onBlur={handleBlur} onKeyUp={handleKeyUp} onKeyDown={handleKeyDown} onChange={handleChange} value={inputValue}/> 
+                {<Suggestions areSuggestionsVisible={areSuggestionsVisible} handleSelect={handleSelect} suggestions={cities}/>}
             </div>
-            <input type="submit" value="Find" />
         </form>
     )
 }

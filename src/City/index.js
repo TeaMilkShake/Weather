@@ -1,15 +1,12 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import Navbar from '../shared/Navbar'
-import PhotoMap from './PhotoMap'
-import WeatherProps from './WeatherProps'
-const City = (props) =>{
-    
+import WeatherInfo from './WeatherInfo'
+const City = () =>{
     return(
-        <React.Fragment>
+        <Fragment>
             <Navbar />
-            <PhotoMap />
-            <WeatherProps />
-        </React.Fragment>
+            <WeatherInfo />
+        </Fragment>
     )
 }
 
