@@ -1,5 +1,4 @@
 import React from 'react'
-import {TiWeatherPartlySunny} from 'react-icons/ti';
 import WeatherIcon from '../shared/WeatherIcon'
 const Weather = (props) =>{
     return(

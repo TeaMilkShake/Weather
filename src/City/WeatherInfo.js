@@ -1,16 +1,18 @@
 import React , {useEffect, useState, useRef, Fragment} from 'react'
-import WeatherPhoto, {WeatherPhotoLoader} from './WeatherPhoto'
+import Photo, {PhotoLoader} from './Photo'
 import WeatherProps, {WeatherPropsLoader} from './WeatherProps'
 
 import {useQuery} from '../hooks'
 import {getCityWeather, getCitySuggestions, getCurrentLocation} from '../api'
 
+import WeatherPhoto from '../shared/WeatherPhoto'
 
 const WeatherInfo = () =>{
     const [data, setData] = useState({isLoading: true , data: null})
-    const cityQuery = useQuery('q')
-    const countryQuery = useQuery('country')
+    const cityQuery = useQuery('q').toLowerCase()
+    const countryQuery = useQuery('country').toLowerCase()
     const placeName = useRef({city: '', country: ''})
+
     useEffect(()=>{
         // Getting city weather by ID !!!
         const fetchData = async() =>{
@@ -45,14 +47,17 @@ const WeatherInfo = () =>{
     if(data.isLoading){
         return(
             <Fragment>
-                <WeatherPhotoLoader />
+                <PhotoLoader />
                 <WeatherPropsLoader />
             </Fragment>
         )
     }else{
         return(
             <Fragment>
-                <WeatherPhoto weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}/>
+                <WeatherPhoto weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}>
+                    <Photo/>
+                </WeatherPhoto>
+
                 <WeatherProps 
                     isLoading={data.isLoading}
                     noResults={data.data ? false : true}

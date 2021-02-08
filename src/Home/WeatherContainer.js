@@ -19,17 +19,19 @@ const WeatherContainer = () =>{
             // Get current city id
             let cityId;
             locationResponse.localityInfo.administrative.map((elem) =>{
-                if(elem.name === locationResponse.city && elem.hasOwnProperty('geonameId')){
+                if((elem.name === locationResponse.city || elem.name === locationResponse.locality) && elem.hasOwnProperty('geonameId')){
                     cityId = elem.geonameId
                 }
             })
 
             let WeatherResponse = await getCityWeather(cityId)
-            setWeatherData({
-                temperature: Math.round(WeatherResponse.main.temp),
-                weather: WeatherResponse.weather[0].main,
-                description: WeatherResponse.weather[0].description
-            })
+            if(WeatherResponse){
+                setWeatherData({
+                    temperature: Math.round(WeatherResponse.main.temp),
+                    weather: WeatherResponse.weather[0].main,
+                    description: WeatherResponse.weather[0].description
+                })
+            }
         })
     },[])
     return(

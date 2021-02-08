@@ -28,6 +28,7 @@ $loaderLight: #F3F3F3;
   
 img{
   object-fit: cover;
+  border-style: none;
 }
 .app_wrapper{
   height: 100vh;
@@ -37,7 +38,6 @@ img{
   margin: 0 auto;
   padding: 0 1rem;
 }
-
 
 //Media queries
 @media (min-width: 1200px) {

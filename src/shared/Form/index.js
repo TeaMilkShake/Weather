@@ -1,24 +1,31 @@
-import React, {useState, useRef, useCallback} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import {getCitySuggestions} from '../../api/index'
 import Suggestions from './Suggestions'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import SmallLoader from './SmallLoader'
+import {useQuery} from '../../hooks'
 
 const Form = (props) => {
     const [cities, setCities] = useState(null)
     const [inputValue, setInputValue] = useState("")
     const [areSuggestionsVisible, setIsSuggestionsVisivle] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-
     const history = useHistory()
     const sourseRef = useRef();
-    const freshInputValue = useRef("")
+    let cityQuery = useQuery('q');
+    let countryQuery = useQuery('country');
+
+    useEffect(()=>{
+        if(cityQuery && countryQuery){
+            setInputValue(`${cityQuery}, ${countryQuery}`)
+        }
+    },[])
 
     const handleSelect = (city, country) =>{
-        history.push(`Weather/city?q=${city}&country=${country}`)
+        setInputValue(`${city}, ${country}`)
+        history.push(`/Weather/city?q=${city}&country=${country}`)
     }
-
     const handleChange = async (e) =>{
         setInputValue(e.target.value)
         const fetchData = async ()=>{
@@ -54,8 +61,7 @@ const Form = (props) => {
         }, 200);
     }
     const handleSubmit = (e) =>{
-        e.preventDefault()
-        history.push(`Weather/city?q=${inputValue}&country=${cities[0] ? cities[0].country : 'unfound'}`)
+        e.preventDefault()  
     }
 
     return(
