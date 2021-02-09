@@ -7,6 +7,12 @@ const Loader = () =>{
             <div className="animated_loader">
                 <FaCloud/>
                 <FaCloud/>
+                <div className="loading_block">
+                    <div className="loading_dot"></div>
+                    <div className="loading_dot"></div>
+                    <div className="loading_dot"></div>
+                    <div className="loading_dot"></div>
+                </div>
             </div>
         </div>
     )

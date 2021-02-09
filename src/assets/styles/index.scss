@@ -4,6 +4,11 @@ $lightHover: #E5F1FC;
 $dark: #01020B;
 $lightGray: #dddee2;
 $loaderLight: #F3F3F3;
+@font-face{
+  font-family: Roboto;
+  src: url("../fonts/Roboto.ttf");
+}
+
 @import '../../Home/home';
 @import '../../City/city';
 @import '../../About/about';
@@ -21,11 +26,7 @@ $loaderLight: #F3F3F3;
   box-sizing: border-box;
   outline: none;
 }
-@font-face{
-  font-family: Roboto;
-  src: url("../fonts/Roboto.ttf");
-}
-  
+
 img{
   object-fit: cover;
   border-style: none;

@@ -57,7 +57,7 @@ const Home = () => {
                         weatherData={weatherData} 
                     />
                     <Form locationClass="home" />
-                </div>
+                </div> 
             </div>
         )
 }
