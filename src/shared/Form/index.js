@@ -20,7 +20,7 @@ const Form = (props) => {
         if(cityQuery && countryQuery){
             setInputValue(`${cityQuery}, ${countryQuery}`)
         }
-    },[])
+    },[cityQuery,countryQuery])
 
     const handleSelect = (city, country) =>{
         setInputValue(`${city}, ${country}`)

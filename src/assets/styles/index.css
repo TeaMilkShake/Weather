@@ -95,6 +95,14 @@
   padding: 15px;
 }
 
+.home_loader_block {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: #01020B;
+}
+
 @media screen and (max-width: 500px) {
   .side_offset.home .home_logo {
     font-size: 1.5rem;

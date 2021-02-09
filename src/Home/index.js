@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import Form from '../shared/Form'
 import Burger from '../shared/Burger'
-//import Time from './Time'
 import Weather from './Weather'
-import {getCurrentLocation,getCityWeather} from '../api/index'
 import WeatherPhoto from '../shared/WeatherPhoto'
 import HomePhoto from './HomePhoto'
+import Loader from './Loader'
+import {getCurrentLocation,getCityWeather} from '../api/index'
 
 const Home = () => {
+    const [isLoaderVisible, setIsLoaderVisible] = useState(true)
     const [currentPlace , setCurrentPlace] = useState('')
     const [county , setCountry] = useState('')
     const [weatherData, setWeatherData] = useState({temperature: '', weather: '', description: ''})
@@ -40,13 +41,10 @@ const Home = () => {
             }
         })
     },[])
-
-    
-
-    return(
-        <React.Fragment>
+        return(
             <div className="home_wrapper">
-                <WeatherPhoto weather={weatherData.weather} weatherDescription={weatherData.description}>
+                {(isLoaderVisible || weatherData.temperature === '') ? <Loader/> : null}
+                <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={weatherData.weather} weatherDescription={weatherData.description}>
                     <HomePhoto />
                 </WeatherPhoto>
 
@@ -61,7 +59,6 @@ const Home = () => {
                     <Form locationClass="home" />
                 </div>
             </div>
-        </React.Fragment>
-    )
+        )
 }
 export default Home

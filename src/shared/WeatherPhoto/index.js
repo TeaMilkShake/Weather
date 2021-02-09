@@ -40,10 +40,13 @@ const WeatherPhoto = (props) =>{
                     break;
             }
             imageRef.current.onload = () =>{
+                if(props.setIsLoaderVisible){
+                    props.setIsLoaderVisible(false)
+                }
                 setIsImageLoading(false)
             }
         }
-    }, [isImageLoading])
+    }, [isImageLoading,props.weather,props.weatherDescription])
 
     const styles={
         backgroundImage: `linear-gradient(rgba(1, 2, 11, 0.2), rgba(1, 2, 11, 0.2)), url(${imageRef.current.src})`,
