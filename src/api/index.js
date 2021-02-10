@@ -24,11 +24,31 @@ export const  getCityWeather = async (id)=>{
         console.log(`error`)
     } 
 }
-export const getCitySuggestions = async (city, cancelToken)=>{
+ /* export const getCitySuggestions = async (city, cancelToken)=>{
     try{
         let response = await CitySuggestions.get(`${config.geoDBBaseUrl}limit=5&offset=0&namePrefix=${city}&minPopulation=40000`, {cancelToken})
         return response.data
     }catch(error){
         
     }  
+} */
+  
+export const getCitySuggestions = async(city, cancelToken) =>{
+    const options = {
+        method: 'GET',
+        url: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities',
+        params: {limit: '5', minPopulation: '30000', namePrefix: city},
+        headers: {
+          'x-rapidapi-key': '73684db7a1msh8b685a8e80dea2ap10cbdejsn3b4ff31b5e1c',
+          'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
+        },
+        cancelToken
+      };
+    try{
+        let response = await CitySuggestions.request(options)
+        return response.data
+    }catch{
+
+    }
+    
 }
