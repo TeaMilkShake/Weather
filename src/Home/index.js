@@ -50,7 +50,7 @@ const Home = () => {
 
                 <Burger locationClass="home"/>
                 <div className="side_offset home">
-                    <p className="home_logo">My weather app</p>
+                    <p className="home_logo">Weather logo.</p>
                     <Weather 
                         currentPlace={currentPlace} 
                         county={county}
