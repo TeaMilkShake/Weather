@@ -6,6 +6,7 @@
 .home_wrapper {
   position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
 .home_wrapper .home_image {
@@ -184,7 +185,7 @@
 .home_loader_block .animated_loader .loading_block {
   position: absolute;
   width: 95px;
-  top: 120px;
+  top: 110px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -196,61 +197,61 @@
           justify-content: center;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot {
+.home_loader_block .animated_loader .loading_block .loading_line {
   margin: 0 0 4px 5px;
   background-color: #fff;
   width: 5px;
-  height: 10px;
+  height: 15px;
   top: 10px;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(1) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(1) {
   left: 10px;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(2) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(2) {
   left: 20px;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(3) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(3) {
   left: 30px;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(4) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(4) {
   left: 40px;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(2n+1) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(2n+1) {
   -webkit-animation: dots 1s ease-in-out infinite;
           animation: dots 1s ease-in-out infinite;
 }
 
-.home_loader_block .animated_loader .loading_block .loading_dot:nth-of-type(2n) {
+.home_loader_block .animated_loader .loading_block .loading_line:nth-of-type(2n) {
   -webkit-animation: dots 1s ease-in-out 0.5s infinite;
           animation: dots 1s ease-in-out 0.5s infinite;
 }
 
 @-webkit-keyframes dots {
   0% {
-    height: 10px;
+    height: 15px;
   }
   50% {
-    height: 20px;
+    height: 25px;
   }
   100% {
-    height: 10px;
+    height: 15px;
   }
 }
 
 @keyframes dots {
   0% {
-    height: 10px;
+    height: 15px;
   }
   50% {
-    height: 20px;
+    height: 25px;
   }
   100% {
-    height: 10px;
+    height: 15px;
   }
 }
 

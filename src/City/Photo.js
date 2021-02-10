@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
 
-const Photo = ({styles}) =>{
+const Photo = ({backgroundImageStyles}) =>{
     return(
-        <div style={styles} className="city_photo"></div>            
+        <div style={backgroundImageStyles} className="city_photo"></div>            
     )
 }
 

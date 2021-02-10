@@ -3,7 +3,7 @@ import Form from '../shared/Form'
 import Burger from '../shared/Burger'
 import Weather from './Weather'
 import WeatherPhoto from '../shared/WeatherPhoto'
-import HomePhoto from './HomePhoto'
+import Photo from './Photo'
 import Loader from './Loader'
 import {getCurrentLocation,getCityWeather} from '../api/index'
 
@@ -45,7 +45,7 @@ const Home = () => {
             <div className="home_wrapper">
                 <Loader isLoaderVisible={isLoaderVisible} temperature={weatherData.temperature}/> 
                 <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={weatherData.weather} weatherDescription={weatherData.description}>
-                    <HomePhoto />
+                    <Photo isLoaderVisible={isLoaderVisible} temperature={weatherData.temperature}/>
                 </WeatherPhoto>
 
                 <Burger locationClass="home"/>

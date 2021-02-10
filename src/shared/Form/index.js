@@ -9,21 +9,12 @@ import {useQuery} from '../../hooks'
 const Form = (props) => {
     const [cities, setCities] = useState(null)
     const [inputValue, setInputValue] = useState("")
-    const [areSuggestionsVisible, setIsSuggestionsVisivle] = useState(false)
+    const [areSuggestionsVisible, setIsSuggestionsVisible] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
     const sourseRef = useRef();
-    let cityQuery = useQuery('q');
-    let countryQuery = useQuery('country');
-
-    useEffect(()=>{
-        if(cityQuery && countryQuery){
-            setInputValue(`${cityQuery}, ${countryQuery}`)
-        }
-    },[cityQuery,countryQuery])
 
     const handleSelect = (city, country) =>{
-        setInputValue(`${city}, ${country}`)
         history.push(`/Weather/city?q=${city}&country=${country}`)
     }
     const handleChange = async (e) =>{
@@ -37,7 +28,7 @@ const Form = (props) => {
                 setIsLoading(true)
                 let response = await getCitySuggestions(e.target.value, sourseRef.current.token)
                 if(response){
-                    setIsSuggestionsVisivle(true)   
+                    setIsSuggestionsVisible(true)   
                     setCities(response.data)
                     setIsLoading(false)
                 }
@@ -47,17 +38,17 @@ const Form = (props) => {
                     sourseRef.current.cancel()
                 }
                 setIsLoading(false)
-                setIsSuggestionsVisivle(false)   
+                setIsSuggestionsVisible(false)   
             }
         }
         fetchData()
     }
     const handleFocus = () =>{
-        setIsSuggestionsVisivle(true)
+        setIsSuggestionsVisible(true)
     }
     const handleBlur = () =>{
         setTimeout(() => {
-            setIsSuggestionsVisivle(false)
+            setIsSuggestionsVisible(false)
         }, 200);
     }
     const handleSubmit = (e) =>{

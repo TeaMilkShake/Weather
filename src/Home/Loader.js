@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {FaCloud} from 'react-icons/fa'
 import {Transition} from 'react-spring/renderprops'
+import { config } from 'react-spring'
 
 const Loader = (props) =>{
     const [show, set] = useState(true)
@@ -15,6 +16,7 @@ const Loader = (props) =>{
     return (
         <Transition
             items={show}
+            config={config.gentle}
             from={{ opacity: 1 }}
             enter={{ opacity: 1 }}
             leave={{ opacity: 0 }}>
@@ -23,10 +25,10 @@ const Loader = (props) =>{
                         <FaCloud/>
                         <FaCloud/>
                         <div className="loading_block">
-                            <div className="loading_dot"></div>
-                            <div className="loading_dot"></div>
-                            <div className="loading_dot"></div>
-                            <div className="loading_dot"></div>
+                            <div className="loading_line"></div>
+                            <div className="loading_line"></div>
+                            <div className="loading_line"></div>
+                            <div className="loading_line"></div>
                         </div>
                     </div>
                 </div>)}

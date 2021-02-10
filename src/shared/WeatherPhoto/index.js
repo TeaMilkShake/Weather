@@ -9,51 +9,51 @@ import snowImg from '../../assets/images/snow.jpg'
 import mistImg from '../../assets/images/mist.jpg'
 
 const WeatherPhoto = (props) =>{
-    const [isImageLoading, setIsImageLoading] = useState(true)
     const imageRef = useRef({current: {src: ''}})
+    
     useEffect(()=>{
-        if(isImageLoading){
-            imageRef.current = new Image()
-            switch (props.weather) {
-                case "Clouds":
-                    imageRef.current.src = cloudyImg
-                break;
-                case "Mist":
-                    props.weatherDescription === 'few clouds' ? imageRef.current.src = clearCloudy : imageRef.current.src = cloudyImg
+            if(props.weather){
+                imageRef.current = new Image()
+                switch (props.weather) {
+                    case "Clouds":
+                        imageRef.current.src = cloudyImg
                     break;
-                case "Clear":
-                    imageRef.current.src = clearImg
-                    break;
-                case "Snow":
-                    imageRef.current.src = snowImg
-                    break;
-                case "Rain":
-                    props.weatherDescription === 'light rain' ? imageRef.current.src = drizzleImg : imageRef.current.src = rainImg
-                    break;
-                case "Drizzle":
-                    break;
-                case "Thunderstorm":
-                    imageRef.current.src = thunderImg
-                    break;
-                default:
-                    imageRef.current.src = mistImg
-                    break;
-            }
-            imageRef.current.onload = () =>{
-                if(props.setIsLoaderVisible){
-                    props.setIsLoaderVisible(false)
+                    case "Mist":
+                        props.weatherDescription === 'few clouds' ? imageRef.current.src = clearCloudy : imageRef.current.src = cloudyImg
+                        break;
+                    case "Clear":
+                        imageRef.current.src = clearImg
+                        break;
+                    case "Snow":
+                        imageRef.current.src = snowImg
+                        break;
+                    case "Rain":
+                        props.weatherDescription === 'light rain' ? imageRef.current.src = drizzleImg : imageRef.current.src = rainImg
+                        break;
+                    case "Drizzle":
+                        break;
+                    case "Thunderstorm":
+                        imageRef.current.src = thunderImg
+                        break;
+                    default:
+                        imageRef.current.src = mistImg
+                        break;
                 }
-                setIsImageLoading(false)
-            }
-        }
-    }, [isImageLoading,props.weather,props.weatherDescription])
+                imageRef.current.onload = () =>{
+                    if(props.setIsLoaderVisible){
+                        props.setIsLoaderVisible(false)
+                    }
+                }  
+            }      
+    }, [props.weather])
 
-    const styles={
-        backgroundImage: `linear-gradient(rgba(1, 2, 11, 0.2), rgba(1, 2, 11, 0.2)), url(${imageRef.current.src})`,
+    const backgroundImageStyles={
+        backgroundImage: `linear-gradient(rgba(1, 2, 11, 0.4), rgba(1, 2, 11, 0.4)), url(${imageRef.current.src})`,
         backgroundPosition: "center",
         backgroundSize: "cover"
     }
-    return React.cloneElement(props.children, {styles: styles, src: imageRef.current.src})
+
+        return React.cloneElement(props.children, {...props, backgroundImageStyles: backgroundImageStyles, src: imageRef.current.src})
 }
 
 export default WeatherPhoto
