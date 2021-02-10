@@ -43,7 +43,7 @@ const Home = () => {
     },[])
         return(
             <div className="home_wrapper">
-                {(isLoaderVisible || weatherData.temperature === '') ? <Loader/> : null}
+                <Loader isLoaderVisible={isLoaderVisible} temperature={weatherData.temperature}/> 
                 <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={weatherData.weather} weatherDescription={weatherData.description}>
                     <HomePhoto />
                 </WeatherPhoto>
