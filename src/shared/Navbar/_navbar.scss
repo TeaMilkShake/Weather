@@ -3,10 +3,13 @@
     background-color: $dark;
     padding: 20px 0;
 }
+.burger_block.navbar_burger{
+    top: 0;
+}
 .burger.navbar{
     position: absolute;
     z-index: 5;
-    top: 25px;
+    top: 27px;
     right: 20px;
 }
 .side_offset.navbar{

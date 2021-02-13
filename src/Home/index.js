@@ -48,7 +48,10 @@ const Home = () => {
                     <Photo isLoaderVisible={isLoaderVisible} temperature={weatherData.temperature}/>
                 </WeatherPhoto>
 
-                <Burger locationClass="home"/>
+                <div className="burger_block">
+                    <Burger locationClass="home"/>
+                </div>
+
                 <div className="side_offset home">
                     <p className="home_logo">Weather logo.</p>
                     <Weather 

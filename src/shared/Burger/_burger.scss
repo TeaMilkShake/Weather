@@ -6,6 +6,17 @@
     background-color: #fff;
 }
 
+.burger_block{
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 50px;
+    padding: 0 1rem;
+    max-width: 1350px;
+    width: 100%;
+}
+
 .burger{
     overflow: hidden;
     cursor: pointer;

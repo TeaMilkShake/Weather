@@ -10,7 +10,9 @@ const Navbar = (props) =>{
                     <Form locationClass="navbar"/>
                 </div>
             </div>
-            <Burger locationClass="navbar"/>
+            <div className="burger_block navbar_burger">
+                <Burger locationClass="navbar"/>
+            </div>
         </div>
         
     )

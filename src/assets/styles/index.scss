@@ -27,6 +27,10 @@ $loaderLight: #F3F3F3;
   outline: none;
 }
 
+body{
+  overflow: hidden;
+}
+
 img{
   object-fit: cover;
   border-style: none;

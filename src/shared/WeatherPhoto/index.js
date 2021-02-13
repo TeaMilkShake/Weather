@@ -53,7 +53,7 @@ const WeatherPhoto = (props) =>{
         backgroundSize: "cover"
     }
 
-        return React.cloneElement(props.children, {...props, backgroundImageStyles: backgroundImageStyles, src: imageRef.current.src})
+        return React.cloneElement(props.children, {props, backgroundImageStyles: backgroundImageStyles, src: imageRef.current.src})
 }
 
 export default WeatherPhoto

@@ -12,11 +12,11 @@ const Burger = (props) =>{
         }
     }) 
     return(
-    <div ref={context.burgerRef} className={"burger " + props.locationClass}>
-        <div className="burger_line"></div>
-        <div className="burger_line"></div>
-        <div className="burger_line"></div>
-    </div>
+        <div ref={context.burgerRef} className={"burger " + props.locationClass}>
+            <div className="burger_line"></div>
+            <div className="burger_line"></div>
+            <div className="burger_line"></div>
+        </div>
     )
 }
 
