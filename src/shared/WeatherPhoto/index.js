@@ -52,7 +52,6 @@ const WeatherPhoto = (props) =>{
         backgroundPosition: "center",
         backgroundSize: "cover"
     }
-
         return React.cloneElement(props.children, {props, backgroundImageStyles: backgroundImageStyles, src: imageRef.current.src})
 }
 

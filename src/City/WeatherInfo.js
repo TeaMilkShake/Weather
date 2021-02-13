@@ -8,6 +8,7 @@ import {getCityWeather, getCitySuggestions, getCurrentLocation} from '../api'
 import WeatherPhoto from '../shared/WeatherPhoto'
 
 const WeatherInfo = () =>{
+    const [isLoaderVisible, setIsLoaderVisible] = useState(true)
     const [data, setData] = useState({isLoading: true , data: null})
     const cityQuery = useQuery('q').toLowerCase()
     const countryQuery = useQuery('country').toLowerCase()
@@ -54,8 +55,8 @@ const WeatherInfo = () =>{
     }else{
         return(
             <Fragment>
-                <WeatherPhoto weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}>
-                    <Photo/>
+                <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}>
+                    <Photo isLoaderVisible={isLoaderVisible} temperature={data.data.main.temp}/>
                 </WeatherPhoto>
 
                 <WeatherProps 
