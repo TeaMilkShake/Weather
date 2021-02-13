@@ -6,7 +6,7 @@ import {useQuery} from '../hooks'
 import {getCityWeather, getCitySuggestions, getCurrentLocation} from '../api'
 
 import WeatherPhoto from '../shared/WeatherPhoto'
-
+import axios from 'axios'
 const WeatherInfo = () =>{
     const [isLoaderVisible, setIsLoaderVisible] = useState(true)
     const [data, setData] = useState({isLoading: true , data: null})
@@ -15,15 +15,20 @@ const WeatherInfo = () =>{
     const placeName = useRef({city: '', country: ''})
 
     useEffect(()=>{
+        let getCitySuggestions_CancelToken = axios.CancelToken.source()
+        let getCurrentLocation_CancelToken = axios.CancelToken.source()
+        let getCityWeather_CancelToken = axios.CancelToken.source()
+
+     
         // Getting city weather by ID !!!
         const fetchData = async() =>{
             setData({isLoading: true, data: null})
 
-            let cityResponse = await getCitySuggestions(cityQuery)
+            let cityResponse = await getCitySuggestions(cityQuery, getCitySuggestions_CancelToken.token)
             
             let filteredCities = cityResponse.data.map(async(city)=>{
                 if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
-                    let locationResponse =  await getCurrentLocation(city.latitude, city.longitude)     
+                    let locationResponse =  await getCurrentLocation(city.latitude, city.longitude, getCurrentLocation_CancelToken.token)     
                     placeName.current = {city: city.name, country: city.country}
 
                     let cityId;
@@ -34,7 +39,7 @@ const WeatherInfo = () =>{
                     })
 
                     //Get city weather
-                    let data = await getCityWeather(cityId)
+                    let data = await getCityWeather(cityId, getCityWeather_CancelToken.token)
                     setData({isLoading: false, data: data})
                 } 
             })      
@@ -43,6 +48,11 @@ const WeatherInfo = () =>{
             }        
         }
         fetchData()
+        return ()=>{
+            getCitySuggestions_CancelToken.cancel()
+            getCurrentLocation_CancelToken.cancel()
+            getCityWeather_CancelToken.cancel()
+        }
     },[cityQuery, countryQuery])    
     
     if(data.isLoading){

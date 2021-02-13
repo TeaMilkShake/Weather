@@ -11,7 +11,7 @@ const Suggestions = (props) =>{
             return(
                 <div className="suggestions" style={{visibility: props.areSuggestionsVisible ? `visible` : `hidden`}}>
                    {props.suggestions.map((suggestion, index)=>{
-                       return <p className="suggestion" onClick={()=> props.handleSelect(suggestion.city, suggestion.country)} key={index}>{`${suggestion.city}, ${suggestion.country}`}</p>
+                       return <p className="suggestion" onMouseDown={()=> props.handleSelect(suggestion.city, suggestion.country)} key={index}>{`${suggestion.city}, ${suggestion.country}`}</p>
                     })
                     }
                 </div>

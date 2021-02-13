@@ -8,17 +8,17 @@ const config = {
 
 export const CitySuggestions = axios.create()
 
-export const getCurrentLocation = async (lat,long)=>{
+export const getCurrentLocation = async (lat,long, cancelToken)=>{
     try{
-        let response = await axios.get(`${config.bigDataCloudBaseUrl}latitude=${lat}&longitude=${long}&localityLanguage=en`)
+        let response = await axios.get(`${config.bigDataCloudBaseUrl}latitude=${lat}&longitude=${long}&localityLanguage=en`,{cancelToken})
         return response.data
     }catch(error){
         console.log(`error`)
     }   
 }
-export const  getCityWeather = async (id)=>{
+export const  getCityWeather = async (id, cancelToken)=>{
     try{
-        let response = await axios.get(`${config.openWeatherBaseUrl}id=${id}&units=metric&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`)
+        let response = await axios.get(`${config.openWeatherBaseUrl}id=${id}&units=metric&APPID=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`,{cancelToken})
         return response.data
     }catch(error){
         console.log(`error`)

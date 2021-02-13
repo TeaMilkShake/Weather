@@ -891,7 +891,6 @@
   left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
-  height: 50px;
   padding: 0 1rem;
   max-width: 1350px;
   width: 100%;

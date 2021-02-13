@@ -13,7 +13,7 @@ const Form = (props) => {
     const [isLoading, setIsLoading] = useState(false)
     const history = useHistory()
     const sourseRef = useRef();
-
+    
     const handleSelect = (city, country) =>{
         history.push(`/Weather/city?q=${city}&country=${country}`)
     }
@@ -46,10 +46,8 @@ const Form = (props) => {
     const handleFocus = () =>{
         setIsSuggestionsVisible(true)
     }
-    const handleBlur = () =>{
-        setTimeout(() => {
-            setIsSuggestionsVisible(false)
-        }, 200);
+    const handleBlur = () =>{  
+        setIsSuggestionsVisible(false)
     }
     const handleSubmit = (e) =>{
         e.preventDefault()  
