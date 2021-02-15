@@ -9,10 +9,11 @@ import snowImg from '../../assets/images/snow.jpg'
 import mistImg from '../../assets/images/mist.jpg'
 
 const WeatherPhoto = (props) =>{
+    const [imageLoading, setImageLoading] = useState(true)
     const imageRef = useRef({current: {src: ''}})
     
     useEffect(()=>{
-            if(props.weather){
+            if(imageLoading){
                 imageRef.current = new Image()
                 switch (props.weather) {
                     case "Clouds":
@@ -40,11 +41,10 @@ const WeatherPhoto = (props) =>{
                         break;
                 }
                 imageRef.current.onload = () =>{
-                    if(props.setIsLoaderVisible){
-                        props.setIsLoaderVisible(false)
-                    }
+                    setImageLoading(false)
+                    props.setIsLoaderVisible(false)
                 }  
-            }      
+            }    
     }, [props.weather])
 
     const backgroundImageStyles={

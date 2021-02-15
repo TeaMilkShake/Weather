@@ -25,27 +25,30 @@ const WeatherInfo = () =>{
             setData({isLoading: true, data: null})
 
             let cityResponse = await getCitySuggestions(cityQuery, getCitySuggestions_CancelToken.token)
-            
-            let filteredCities = cityResponse.data.map(async(city)=>{
-                if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
-                    let locationResponse =  await getCurrentLocation(city.latitude, city.longitude, getCurrentLocation_CancelToken.token)     
-                    placeName.current = {city: city.name, country: city.country}
-
-                    let cityId;
-                    locationResponse.localityInfo.administrative.map((elem) =>{
-                        if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
-                            cityId = elem.geonameId
-                        }
-                    })
-
-                    //Get city weather
-                    let data = await getCityWeather(cityId, getCityWeather_CancelToken.token)
-                    setData({isLoading: false, data: data})
-                } 
-            })      
-            if(filteredCities.length === 0){
-                setData({isLoading: false, data: null})
-            }        
+            if(cityResponse){
+                let filteredCities = cityResponse.data.map(async(city)=>{
+                    if(city.name.toLowerCase() === cityQuery && city.country.toLowerCase() === countryQuery){
+                        let locationResponse =  await getCurrentLocation(city.latitude, city.longitude, getCurrentLocation_CancelToken.token) 
+                        if(locationResponse){
+                            placeName.current = {city: city.name, country: city.country}
+    
+                            let cityId;
+                            locationResponse.localityInfo.administrative.map((elem) =>{
+                                if(elem.name.toLowerCase() === countryQuery && elem.hasOwnProperty('geonameId')){
+                                    cityId = elem.geonameId
+                                }
+                            })
+        
+                            //Get city weather
+                            let data = await getCityWeather(cityId, getCityWeather_CancelToken.token)
+                            setData({isLoading: false, data: data})
+                        }         
+                    } 
+                })      
+                if(filteredCities.length === 0){
+                    setData({isLoading: false, data: null})
+                }      
+            }  
         }
         fetchData()
         return ()=>{
@@ -55,7 +58,7 @@ const WeatherInfo = () =>{
         }
     },[cityQuery, countryQuery])    
     
-    if(data.isLoading){
+    if(data.isLoading || !data){
         return(
             <Fragment>
                 <PhotoLoader />
