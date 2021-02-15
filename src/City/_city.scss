@@ -1,16 +1,20 @@
 $loaderTextHeight: 60px;
 
-.city_photo{
+.city_photo_block{
     height: 300px;
     position: relative;
     z-index: 1;
+    overflow: hidden;
+}
+.city_photo{
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 .city_photo.loader{
-    background-color: $loaderLight;
+    height: 300px;
     position: relative;
-    &:before{
-        background-color: unset;
-    }
+    background-color: $loaderLight;
 }
 
 .city_main_info{
@@ -24,7 +28,7 @@ $loaderTextHeight: 60px;
         font-size: 1.5em;
     }
     .weather_mini_card{ 
-        padding: 5px 15px;
+        padding: 8px 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -40,10 +44,9 @@ $loaderTextHeight: 60px;
             font-size: 1.8rem;
         }
         .city_weather_icon{
+            height: 32px;
+            width: 32px;
             font-size: 2em;
-            svg{
-                margin-top: 5px;
-            }
         }
     }
 }
@@ -110,7 +113,7 @@ $loaderTextHeight: 60px;
 }
 
 @media screen and (max-width: 550px){
-    .city_photo{
+    .city_photo_block{
         height: 200px;
     }
 

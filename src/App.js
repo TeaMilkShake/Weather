@@ -1,8 +1,9 @@
 import Home from './Home'
 import City from './City'
 import About from './About'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import {AppProvider} from './AppContext'
+import NotFound from './404/index'
 
 function App() {
   return (
@@ -10,8 +11,11 @@ function App() {
       <div className="app_wrapper">
         <About/>
         <BrowserRouter>
-          <Route exact path="/Weather" render={() => <Home />}/>
-          <Route exact path="/Weather/city" render={() => <City />}/>
+        <Switch>
+          <Route exact path="/Weather" component={Home}/>
+          <Route exact path="/Weather/city" component={City}/>
+          <Route component={NotFound}/>
+        </Switch>
         </BrowserRouter>
       </div>
     </AppProvider>

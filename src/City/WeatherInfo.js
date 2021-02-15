@@ -68,9 +68,11 @@ const WeatherInfo = () =>{
     }else{
         return(
             <Fragment>
-                <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}>
-                    <Photo isLoaderVisible={isLoaderVisible} temperature={data.data.main.temp}/>
-                </WeatherPhoto>
+                <div className="city_photo_block">
+                    <WeatherPhoto setIsLoaderVisible={setIsLoaderVisible} weather={data.data.weather[0].main} weatherDescription={data.data.weather[0].description}>
+                        <Photo isLoaderVisible={isLoaderVisible} temperature={data.data.main.temp}/>
+                    </WeatherPhoto>
+                </div>
 
                 <WeatherProps 
                     isLoading={data.isLoading}

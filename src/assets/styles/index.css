@@ -279,19 +279,23 @@
   }
 }
 
-.city_photo {
+.city_photo_block {
   height: 300px;
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+.city_photo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .city_photo.loader {
-  background-color: #F3F3F3;
+  height: 300px;
   position: relative;
-}
-
-.city_photo.loader:before {
-  background-color: unset;
+  background-color: #F3F3F3;
 }
 
 .city_main_info {
@@ -314,7 +318,7 @@
 }
 
 .city_main_info .weather_mini_card {
-  padding: 5px 15px;
+  padding: 8px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -340,11 +344,9 @@
 }
 
 .city_main_info .weather_mini_card .city_weather_icon {
+  height: 32px;
+  width: 32px;
   font-size: 2em;
-}
-
-.city_main_info .weather_mini_card .city_weather_icon svg {
-  margin-top: 5px;
 }
 
 .city_main_info.loader {
@@ -434,7 +436,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .city_photo {
+  .city_photo_block {
     height: 200px;
   }
   .city_main_info {
